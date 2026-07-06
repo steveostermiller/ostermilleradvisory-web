@@ -229,12 +229,12 @@
         </a>
 
         <!--
-          OPTIONAL CONTACT FORM
-          Ready to go, but a static site can't send email on its own. Easiest option:
-          create a free Formspree form (https://formspree.io) and replace YOUR_FORM_ID
-          below. Until then, the email button above works with no setup.
+          Contact form → Formspree. The `action` posts natively if JavaScript is
+          off; the fetch handler at the bottom of the page enhances it to submit
+          inline (no page redirect) and show a success/error message.
         -->
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form id="contact-form" class="contact-form"
+              action="https://formspree.io/f/mkolebpv" method="POST">
           <div class="field">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
@@ -255,6 +255,7 @@
           <p class="form-note">Prefer email? Write me directly at
             <a href="mailto:steve@ostermilleradvisory.com">steve@ostermilleradvisory.com</a>.</p>
         </form>
+        <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
       </div>
     </div>
   </section>
@@ -269,6 +270,53 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Progressive-enhancement AJAX submit for the contact form (Formspree JSON API).
+    // If JS is unavailable, the form's action/method still post natively.
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      var status = document.getElementById('form-status');
+      var btn = form.querySelector('button[type="submit"]');
+      var mailto = 'steve@ostermilleradvisory.com';
+
+      function showStatus(kind, msg) {
+        status.hidden = false;
+        status.className = 'form-status form-status--' + kind;
+        status.textContent = msg;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true;
+        var label = btn.textContent;
+        btn.textContent = 'Sending…';
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          if (res.ok) {
+            form.hidden = true;
+            showStatus('ok', "Thanks — your message is on its way. I'll get back to you personally, usually within a day or two.");
+          } else {
+            return res.json().then(function (data) {
+              var msg = (data && data.errors)
+                ? data.errors.map(function (er) { return er.message; }).join(', ')
+                : 'Something went wrong. Please email me directly at ' + mailto + '.';
+              showStatus('err', msg);
+              btn.disabled = false;
+              btn.textContent = label;
+            });
+          }
+        }).catch(function () {
+          showStatus('err', 'Network error — please email me directly at ' + mailto + '.');
+          btn.disabled = false;
+          btn.textContent = label;
+        });
+      });
+    })();
   </script>
 </body>
 </html>

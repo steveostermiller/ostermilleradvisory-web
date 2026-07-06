@@ -217,6 +217,15 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 0 0 3px rgba(185,118,47,0.15);
 }
 .form-note { margin: 4px 0 0; font-size: .88rem; color: var(--color-ink-2); }
+.form-status { margin: 0; font-size: 1.08rem; line-height: 1.5; border-radius: var(--radius); }
+.form-status--ok {
+  color: #fff; background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.35); padding: 22px 26px;
+}
+.form-status--err {
+  color: #fff; background: rgba(0,0,0,0.20);
+  border-left: 4px solid #fff; padding: 14px 18px;
+}
 
 /* ===== Footer ===== */
 .site-footer { background: var(--color-ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 26px 0; }
