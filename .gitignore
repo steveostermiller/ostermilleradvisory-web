@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Private source material — DO NOT publish to the public site
+brand/Steve LI profile.pdf
+brand/Steve Positioning ChatGPT thread.md
+brand/linkedin-profile.pdf
+brand/*.pdf
+brand/*ChatGPT*.md
