@@ -48,15 +48,13 @@ a:hover { text-decoration: underline; }
 /* ===== Header ===== */
 .site-header {
   position: sticky; top: 0; z-index: 20;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(150%) blur(8px);
+  background: #ffffff;
   border-bottom: 1px solid var(--color-line);
 }
 .header__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.brand { display: flex; align-items: baseline; gap: 8px; color: var(--color-ink); flex-shrink: 0; }
+.brand { display: flex; align-items: center; flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
-.brand__name { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .5px; line-height: 1; white-space: nowrap; }
-.brand__sub { font-family: var(--font-display); font-size: .8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--color-accent-d); white-space: nowrap; }
+.brand__logo { display: block; height: 42px; width: auto; }
 .nav { display: flex; align-items: center; gap: 28px; }
 .nav a { color: var(--color-ink-2); font-size: .95rem; font-weight: 500; }
 .nav a:hover { color: var(--color-ink); text-decoration: none; }
@@ -251,9 +249,8 @@ a:hover { text-decoration: underline; }
   .grid--outcomes { gap: 14px; }
   .step { grid-template-columns: 48px 1fr; gap: 14px; }
   .step__num { font-size: 2rem; }
-  /* Keep the header wordmark + button on one line each */
+  /* Fit the header logo + button comfortably on small screens */
   .header__inner { gap: 12px; }
-  .brand__name { font-size: 1.2rem; }
-  .brand__sub { font-size: .62rem; letter-spacing: 2px; }
+  .brand__logo { height: 32px; }
   .btn--sm { padding: 8px 14px; font-size: .82rem; }
 }
