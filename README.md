@@ -28,8 +28,9 @@ brand/                   # logo + favicon used by the site
 Brand font is **Crushed** (Google Fonts); brand color is the orange gradient
 `#983f15 → #c55a29 → #f2763d`, sampled from the logo.
 
-> **Note:** `brand/` also holds private source material (LinkedIn PDF, positioning
-> notes). Those are git-ignored and never published — see `.gitignore`.
+> **Note:** private source material (LinkedIn PDF, positioning notes) is kept
+> *outside* this repo at `../ostermiller-advisory-private/` so it can never be
+> published. The `.gitignore` also blocks such files as a backstop.
 
 ## Contact form
 
