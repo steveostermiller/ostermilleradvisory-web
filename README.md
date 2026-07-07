@@ -38,6 +38,18 @@ The contact section has an email button (works immediately) plus an optional for
 The form posts to [Formspree](https://formspree.io): create a free form and replace
 `YOUR_FORM_ID` in `index.html`. Email address: `steve@ostermilleradvisory.com`.
 
+## Automated checks
+
+Every push and pull request runs `.github/workflows/checks.yml`, which executes
+`scripts/check_site.py` (standard-library Python, no dependencies). It verifies:
+
+- HTML is well-formed (no unclosed or stray tags)
+- every local asset referenced by `href`/`src` actually exists in the repo
+- every in-page `#anchor` link points at a real element id
+
+Run it locally anytime with `python3 scripts/check_site.py`. External URLs
+(fonts, Formspree, the not-yet-live custom domain) are intentionally not fetched.
+
 ## Deploy (GitHub Pages)
 
 1. Push this repo to GitHub (`main` branch).
