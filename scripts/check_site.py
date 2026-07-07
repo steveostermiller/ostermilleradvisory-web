@@ -24,7 +24,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HTML_FILES = ["index.html"]
+HTML_FILES = ["index.html", "privacy.html"]
 
 VOID = {"meta", "link", "img", "br", "hr", "input", "area", "base",
         "col", "embed", "source", "track", "wbr"}

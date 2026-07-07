@@ -15,13 +15,12 @@
 
   <link rel="icon" type="image/png" href="brand/favicon.png">
 
-  <!-- Fonts: "Crushed" is the brand/logo face; Inter for body -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crushed&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts ("Crushed" + "Inter") are self-hosted in assets/fonts/ and declared
+       via @font-face in style.css — no external font requests, so no visitor
+       data is sent to Google. -->
 
   <!-- Bump ?v= whenever style.css changes, so browsers fetch the new file instead of a cached copy -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260706c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260707">
 </head>
 <body>
 
@@ -251,7 +250,9 @@
             <textarea id="message" name="message" rows="4" required></textarea>
           </div>
           <button class="btn btn--primary" type="submit">Send message</button>
-          <p class="form-note">Prefer email? Write me directly at
+          <p class="form-note">By submitting, you agree I may use the details you provide
+            to respond to your inquiry, as described in my
+            <a href="privacy.html">Privacy Policy</a>. Prefer email? Write me directly at
             <a href="mailto:steve@ostermilleradvisory.com">steve@ostermilleradvisory.com</a>.</p>
         </form>
         <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
@@ -263,7 +264,10 @@
   <footer class="site-footer">
     <div class="container footer__inner">
       <span>&copy; <span id="year"></span> Steve Ostermiller Advisory</span>
-      <a href="mailto:steve@ostermilleradvisory.com">steve@ostermilleradvisory.com</a>
+      <span class="footer__links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:steve@ostermilleradvisory.com">steve@ostermilleradvisory.com</a>
+      </span>
     </div>
   </footer>
 
