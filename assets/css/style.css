@@ -296,6 +296,11 @@ a:hover { text-decoration: underline; }
 .site-footer, .site-footer a { color: #9fb0bd; font-size: .9rem; }
 .site-footer a:hover { color: #fff; }
 .footer__links { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.footer__disclaimer {
+  margin: 16px 0 0; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  max-width: 760px; font-size: .82rem; line-height: 1.55; color: #8a99a5;
+}
 
 /* ===== Legal / long-form pages ===== */
 .legal { max-width: 760px; }
