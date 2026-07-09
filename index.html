@@ -20,7 +20,7 @@
        data is sent to Google. -->
 
   <!-- Bump ?v= whenever style.css changes, so browsers fetch the new file instead of a cached copy -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260707b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260707c">
 </head>
 <body>
 
@@ -191,17 +191,16 @@
             I&rsquo;m Steve &mdash; an operator, coach, and author who helps leaders simplify the
             complexity of growing a business. For more than 25 years I&rsquo;ve worked at the
             seam where strategy meets execution: as a COO, a VP of Operations, and a
-            hands-on guide to teams across tech, finance, healthcare, logistics, media, education, defense, federal and state government, utilities, manufacturing, and nonprofit.
+            hands-on guide to teams across tech, finance, healthcare, logistics, media, education, 
+            defense, federal and state government, utilities, manufacturing, and nonprofit.
           </p>
           <p>
-            I founded and lead Utah Agile, a 2,500-plus member professional community,
-            and I&rsquo;ve co-authored two best-seller books on modern project delivery. My
+            I co-founded the Human AI Consortium, a collaborative of independent practitioners 
+            at the intersection of agility, organizational design, change, and AI.
+            I also founded and lead Utah Agile, a 2,500-plus member professional community,
+            and I&rsquo;ve co-authored two best-seller books on modern product delivery. My
             work is grounded in principles rather than prescriptions, helping companies
             find what actually works instead of following models that don&rsquo;t stick.
-          </p>
-          <p>
-            I&rsquo;m also a father of five and a soon-to-be grandfather &mdash; proof, I like to
-            say, that purpose compounds.
           </p>
           <p class="about__cta">
             <a class="link-arrow" href="#contact">Let&rsquo;s talk about your business &rarr;</a>
@@ -234,11 +233,11 @@
         <form id="contact-form" class="contact-form"
               action="https://formspree.io/f/mkolebpv" method="POST">
           <div class="field">
-            <label for="name">Name</label>
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="name" name="name" required>
           </div>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
             <input type="email" id="email" name="email" required>
           </div>
           <div class="field">
@@ -247,15 +246,16 @@
           </div>
           <div class="field">
             <label for="message">What&rsquo;s on your mind?</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+            <textarea id="message" name="message" rows="4"></textarea>
           </div>
+          <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
           <button class="btn btn--primary" type="submit">Send message</button>
-          <p class="form-note">By submitting, you agree I may use the details you provide
+          <p class="form-note"><span class="req" aria-hidden="true">*</span> Required.
+            By submitting, you agree I may use the details you provide
             to respond to your inquiry, as described in my
             <a href="privacy.html">Privacy Policy</a>. Prefer email? Write me directly at
             <a href="mailto:steve@ostermilleradvisory.com">steve@ostermilleradvisory.com</a>.</p>
         </form>
-        <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
       </div>
     </div>
   </section>
@@ -308,8 +308,11 @@
           headers: { 'Accept': 'application/json' }
         }).then(function (res) {
           if (res.ok) {
-            form.hidden = true;
-            showStatus('ok', "Thanks — your message is on its way. I'll get back to you personally, usually within a day or two.");
+            // Keep the form in place; confirm inline above the button and
+            // lock the button so it can't be resubmitted.
+            showStatus('ok', "Thanks — your message has been sent. I'll get back to you personally, usually within a day or two.");
+            btn.textContent = 'Message Sent';
+            btn.disabled = true;
           } else {
             return res.json().then(function (data) {
               var msg = (data && data.errors)
